@@ -222,6 +222,11 @@ async def command(ack, body, respond, client, logger):
                     "emoji": True
                 },
                 "action_id": "datepicker-action"
+            },
+            "label": {
+                "type": "plain_text",
+                "text": "Workout Date",
+                "emoji": True
             }
         },
         {
