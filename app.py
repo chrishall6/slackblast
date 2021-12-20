@@ -222,7 +222,7 @@ async def command(ack, body, respond, client, logger):
                     "emoji": True
                 },
                 "action_id": "datepicker-action"
-            },
+            }
         },
         {
             "type": "input",
@@ -235,7 +235,7 @@ async def command(ack, body, respond, client, logger):
                     "emoji": True
                 },
                 "action_id": "channels_select-action"
-            },
+            }
         },
         {
             "type": "input",
