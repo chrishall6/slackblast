@@ -212,6 +212,40 @@ async def command(ack, body, respond, client, logger):
     blocks = [
         {
             "type": "input",
+            "block_id": "title",
+            "element": {
+                "type": "plain_text_input",
+                "action_id": "title",
+                "placeholder": {
+                    "type": "plain_text",
+                    "text": "Snarky Title?"
+                }
+            },
+            "label": {
+                "type": "plain_text",
+                "text": "Title"
+            }
+        },
+        {
+            "type": "input",
+            "block_id": "the_ao",
+            "element": {
+                "type": "channels_select",
+                "placeholder": {
+                    "type": "plain_text",
+                    "text": "Select the AO",
+                    "emoji": True
+                },
+                "action_id": "channels_select-action"
+            },
+            "label": {
+                "type": "plain_text",
+                "text": "The AO",
+                "emoji": True
+            }
+        },
+        {
+            "type": "input",
             "block_id": "date",
             "element": {
                 "type": "datepicker",
@@ -222,19 +256,11 @@ async def command(ack, body, respond, client, logger):
                     "emoji": True
                 },
                 "action_id": "datepicker-action"
-            }
-        },
-        {
-            "type": "input",
-            "block_id": "the_ao",
-            "element": {
-                "type": "channels_select",
-                "placeholder": {
-                    "type": "plain_text",
-                    "text": "Select an AO by channel",
-                    "emoji": True
-                },
-                "action_id": "channels_select-action"
+            },
+            "label": {
+                "type": "plain_text",
+                "text": "Workout Date",
+                "emoji": True
             }
         },
         {
@@ -262,32 +288,14 @@ async def command(ack, body, respond, client, logger):
                 "type": "multi_users_select",
                 "placeholder": {
                     "type": "plain_text",
-                    "text": "Select pax who posted",
+                    "text": "Tag the PAX",
                     "emoji": True
                 },
                 "action_id": "multi_users_select-action"
             },
             "label": {
                 "type": "plain_text",
-                "text": "PAX",
-                "emoji": True
-            }
-        },
-        {
-            "type": "input",
-            "block_id": "moleskine",
-            "element": {
-                "type": "plain_text_input",
-                "multiline": True,
-                "action_id": "plain_text_input-action",
-                "placeholder": {
-                    "type": "plain_text",
-                    "text": "Workout summary\n\n"
-                }
-            },
-            "label": {
-                "type": "plain_text",
-                "text": "Summary (optional)",
+                "text": "The PAX",
                 "emoji": True
             }
         },
@@ -305,48 +313,8 @@ async def command(ack, body, respond, client, logger):
             },
             "label": {
                 "type": "plain_text",
-                "text": "FNGs"
+                "text": "List untaggable names separated by commas (FNGs, Willy Lomans, etc.)"
             }
-        },
-        {
-            "type": "input",
-            "block_id": "additionalfngs",
-            "element": {
-                "type": "plain_text_input",
-                "action_id": "fng-action",
-                "initial_value": "None",
-                "placeholder": {
-                    "type": "plain_text",
-                    "text": "FNGs not yet on Slack"
-                }
-            },
-            "label": {
-                "type": "plain_text",
-                "text": "Additional FNGs (optional)"
-            }
-        },
-        {
-            "type": "input",
-            "block_id": "visitingpax",
-            "element": {
-                "type": "plain_text_input",
-                "action_id": "fng-action",
-                "initial_value": "None",
-                "placeholder": {
-                    "type": "plain_text",
-                    "text": "How many PAX from another region?"
-                }
-            },
-            "label": {
-                "type": "plain_text",
-                "text": "Visiting PAX (optional)"
-            }
-        },
-        {
-            "type": "divider"
-        },
-        {
-            "type": "divider"
         },
         {
             "type": "input",
@@ -363,6 +331,28 @@ async def command(ack, body, respond, client, logger):
                 "type": "plain_text",
                 "text": "Count"
             }
+        },
+        {
+            "type": "input",
+            "block_id": "moleskine",
+            "element": {
+                "type": "plain_text_input",
+                "multiline": True,
+                "action_id": "plain_text_input-action",
+                "initial_value": "WARMUP: \nTHE THANG: \nMARY: \nANNOUNCEMENTS: \nCOT: ",
+                "placeholder": {
+                    "type": "plain_text",
+                    "text": "Tell us what happened\n\n"
+                }
+            },
+            "label": {
+                "type": "plain_text",
+                "text": "The Moleskine",
+                "emoji": True
+            }
+        },
+        {
+            "type": "divider"
         },
         {
             "type": "section",
@@ -545,4 +535,4 @@ async def endpoint(req: Request):
 @app.get("/")
 async def status_ok():
     logging.debug('[In app.get("/")]')
-    return "ok, sounds good."
+    return "ok"
