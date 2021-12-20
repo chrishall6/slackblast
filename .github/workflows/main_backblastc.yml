@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'Backblastc'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DED903CE79674E9A967F622820ACB163 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_572E06B716D7428681C24D9AF8F9A60F }}
