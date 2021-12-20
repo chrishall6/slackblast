@@ -218,7 +218,7 @@ async def command(ack, body, respond, client, logger):
                 "action_id": "title",
                 "placeholder": {
                     "type": "plain_text",
-                    "text": "Snarky Title?"
+                    "text": "Enter a snarky title here..."
                 }
             },
             "label": {
