@@ -535,4 +535,4 @@ async def endpoint(req: Request):
 @app.get("/")
 async def status_ok():
     logging.debug('[In app.get("/")]')
-    return "ok"
+    return "ok, sounds good."
