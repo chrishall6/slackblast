@@ -400,7 +400,7 @@ async def command(ack, body, respond, client, logger):
             "callback_id": "backblast-id",
             "title": {
                 "type": "plain_text",
-                "text": "Create a Backblast"
+                "text": "F3 South Cary Backblast"
             },
             "submit": {
                 "type": "plain_text",
