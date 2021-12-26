@@ -339,7 +339,6 @@ async def command(ack, body, respond, client, logger):
                 "type": "plain_text_input",
                 "multiline": True,
                 "action_id": "plain_text_input-action",
-                "initial_value": "WARMUP: \nTHE THANG: \nMARY: \nANNOUNCEMENTS: \nCOT: ",
                 "placeholder": {
                     "type": "plain_text",
                     "text": "Tell us what happened\n\n"
@@ -448,7 +447,7 @@ async def view_submission(ack, body, logger, client):
         # formatting a message
         # todo: change to use json object
         header_msg = f"*Slackblast*: "
-        title_msg = f"*" + count + " posted at " + the_ao + "*"
+        title_msg = f"*" + count + " posted at " + ao_name + "*"
 
         date_msg = f"*DATE*: " + the_date
         ao_msg = f"*AO*: <#" + the_ao + ">"
