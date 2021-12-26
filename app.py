@@ -212,6 +212,40 @@ async def command(ack, body, respond, client, logger):
     blocks = [
         {
             "type": "input",
+            "block_id": "title",
+            "element": {
+                "type": "plain_text_input",
+                "action_id": "title",
+                "placeholder": {
+                    "type": "plain_text",
+                    "text": "Snarky Title?"
+                }
+            },
+            "label": {
+                "type": "plain_text",
+                "text": "Title"
+            }
+        },
+        {
+            "type": "input",
+            "block_id": "the_ao",
+            "element": {
+                "type": "channels_select",
+                "placeholder": {
+                    "type": "plain_text",
+                    "text": "Select the AO",
+                    "emoji": True
+                },
+                "action_id": "channels_select-action"
+            },
+            "label": {
+                "type": "plain_text",
+                "text": "The AO",
+                "emoji": True
+            }
+        },
+        {
+            "type": "input",
             "block_id": "date",
             "element": {
                 "type": "datepicker",
@@ -226,24 +260,6 @@ async def command(ack, body, respond, client, logger):
             "label": {
                 "type": "plain_text",
                 "text": "Workout Date",
-                "emoji": True
-            }
-        },
-        {
-            "type": "input",
-            "block_id": "the_ao",
-            "element": {
-                "type": "channels_select",
-                "placeholder": {
-                    "type": "plain_text",
-                    "text": "Select an OA by channel",
-                    "emoji": True
-                },
-                "action_id": "channels_select-action"
-            },
-            "label": {
-                "type": "plain_text",
-                "text": "The AO",
                 "emoji": True
             }
         },
@@ -272,33 +288,14 @@ async def command(ack, body, respond, client, logger):
                 "type": "multi_users_select",
                 "placeholder": {
                     "type": "plain_text",
-                    "text": "Select pax who posted",
+                    "text": "Tag the PAX",
                     "emoji": True
                 },
                 "action_id": "multi_users_select-action"
             },
             "label": {
                 "type": "plain_text",
-                "text": "Pax",
-                "emoji": True
-            }
-        },
-        {
-            "type": "input",
-            "block_id": "moleskine",
-            "element": {
-                "type": "plain_text_input",
-                "multiline": True,
-                "action_id": "plain_text_input-action",
-                "initial_value": "WARMUP: \nTHE THANG: \nMARY: \nANNOUNCEMENTS: \nCOT: ",
-                "placeholder": {
-                    "type": "plain_text",
-                    "text": "Workout summary\n\n"
-                }
-            },
-            "label": {
-                "type": "plain_text",
-                "text": "Summary (optional)",
+                "text": "The PAX",
                 "emoji": True
             }
         },
@@ -333,6 +330,25 @@ async def command(ack, body, respond, client, logger):
             "label": {
                 "type": "plain_text",
                 "text": "Count"
+            }
+        },
+        {
+            "type": "input",
+            "block_id": "moleskine",
+            "element": {
+                "type": "plain_text_input",
+                "multiline": True,
+                "action_id": "plain_text_input-action",
+                "initial_value": "WARMUP: \nTHE THANG: \nMARY: \nANNOUNCEMENTS: \nCOT: ",
+                "placeholder": {
+                    "type": "plain_text",
+                    "text": "Tell us what happened\n\n"
+                }
+            },
+            "label": {
+                "type": "plain_text",
+                "text": "The Moleskine",
+                "emoji": True
             }
         },
         {
@@ -384,7 +400,7 @@ async def command(ack, body, respond, client, logger):
             "callback_id": "backblast-id",
             "title": {
                 "type": "plain_text",
-                "text": "Create a Backblast"
+                "text": "F3 South Cary Backblast 1"
             },
             "submit": {
                 "type": "plain_text",
