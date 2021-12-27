@@ -333,27 +333,6 @@ async def command(ack, body, respond, client, logger):
                 "text": "Summary",
                 "emoji": True
             }
-        },
-        {
-            "type": "divider"
-        },
-        {
-            "type": "section",
-            "block_id": "destination",
-            "text": {
-                "type": "plain_text",
-                "text": "Choose where to post this"
-            },
-            "accessory": {
-                "action_id": "destination-action",
-                "type": "static_select",
-                "placeholder": {
-                    "type": "plain_text",
-                    "text": "Choose where"
-                },
-                "initial_option": initial_channel_option,
-                "options": channel_options
-            }
         }
     ]
 
@@ -406,7 +385,7 @@ async def view_submission(ack, body, logger, client):
     fngs = result["fngs"]["fng-action"]["value"]
     count = result["count"]["count-action"]["value"]
     moleskine = result["moleskine"]["plain_text_input-action"]["value"]
-    destination = result["destination"]["destination-action"]["selected_option"]["value"]
+    #destination = result["destination"]["destination-action"]["selected_option"]["value"]
     email_to = safeget(result, "email", "email-action", "value")
     the_date = result["date"]["datepicker-action"]["selected_date"]
     chan_1stf = config('FIRST_F_CHANNEL_ID', default='')
@@ -415,12 +394,12 @@ async def view_submission(ack, body, logger, client):
 
     logger.info(result)
 
-    chan = destination
-    if chan == 'THE_AO':
-        chan = the_ao
+    #chan = destination
+    #if chan == 'THE_AO':
+    #    chan = the_ao
 
-    logger.info('Channel to post to will be {} because the selected destination value was {} while the selected AO in the modal was {}'.format(
-        chan, destination, the_ao))
+    #logger.info('Channel to post to will be {} because the selected destination value was {} while the selected AO in the modal was {}'.format(
+    #    chan, destination, the_ao))
 
     ao_name = await get_channel_name(the_ao, logger, client)
     q_name = (await get_user_names([the_q], logger, client) or [''])[0]
@@ -476,7 +455,7 @@ async def view_submission(ack, body, logger, client):
         logger.error('Error with posting Slack message with chat_postMessage: {}'.format(
             slack_bolt_err))
         # Try again and bomb out without attempting to send email
-        await client.chat_postMessage(channel=chan, text='There was an error with your submission: {}'.format(slack_bolt_err))
+        await client.chat_postMessage(channel=the_q, text='There was an error with your submission: {}'.format(slack_bolt_err))
     try:
         if email_to and email_to != OPTIONAL_INPUT_VALUE:
             subject = title
