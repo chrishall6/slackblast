@@ -449,7 +449,7 @@ async def view_submission(ack, body, logger, client):
             logger.info('\nBody = {}\n'.format(body))
             logger.info('\nResult = {}\n'.format(result))
             
-            if moleskine_msg == 'testing':
+            if moleskine_msg.startswith('TESTING:'):
 
                 # Post to self, since the user entered message "testing"
                 await client.chat_postMessage(channel=chan, text=msg)
