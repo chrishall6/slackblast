@@ -429,7 +429,7 @@ async def view_submission(ack, body, logger, client):
     try:
         # formatting a message
         # todo: change to use json object
-        title_msg = f"" + count + " posted at #" + ao_name
+        title_msg = f"" + count + " posted at <#" + the_ao + ">"
 
         date_msg = f"*DATE*: " + the_date
         ao_msg = f"*AO*: <#" + the_ao + ">"
@@ -444,8 +444,14 @@ async def view_submission(ack, body, logger, client):
             body = make_body(date_msg, ao_msg, q_msg, pax_msg,
                              fngs_msg, count_msg, moleskine_msg)
             msg = title_msg + "\n" + body
+            
+            
             await client.chat_postMessage(channel=chan, text=msg)
-            logger.info('\nMessage posted to Slack! \n{}'.format(msg))
+            logger.info('\nMessage posted to AO Channel! \n{}'.format(msg))
+            await client.chat_postMessage(channel=chan, text=msg)
+            logger.info('\nMessage posted to 1st F Channel! \n{}'.format(msg))
+            
+            
     except Exception as slack_bolt_err:
         logger.error('Error with posting Slack message with chat_postMessage: {}'.format(
             slack_bolt_err))
