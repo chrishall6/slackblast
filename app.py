@@ -452,19 +452,19 @@ async def view_submission(ack, body, logger, client):
             if moleskine_msg.startswith('TESTING:'):
 
                 # Post to self, since the user entered message "testing"
-                await client.chat_postMessage(channel=chan, text=msg)
+                await client.chat_postMessage(channel=the_q, text=msg)
                 logger.info('\nThis is a test message, so only sending to self ({})! \n{}.'.format(the_q, msg))
             
             else:
 
                 # Post to 1st F Channel, from variable chan_1stf, sourced from the FIRST_F_CHANNEL_ID env config variable.
-                await client.chat_postMessage(channel=chan, text=msg)
+                await client.chat_postMessage(channel=the_q, text=msg)
                 logger.info('\nMessage posted to 1st F Channel ({})! \n{}'.format(chan_1stf, msg))
 
                 # Post to AO Channel, the_ao, sourced from user's selection in the form.  Only send here if the 1st F channel
                 # was not selected as the AO (which is sometimes done for unscheduled workouts)
                 if the_ao != chan_1stf:
-                   await client.chat_postMessage(channel=chan, text=msg)
+                   await client.chat_postMessage(channel=the_q, text=msg)
                    logger.info('\nMessage posted to AO Channel ({})! \n{}'.format(the_ao, msg))
 
                 else:
