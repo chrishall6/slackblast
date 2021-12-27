@@ -453,7 +453,7 @@ async def view_submission(ack, body, logger, client):
 
                 # Post to self, since the user entered message "testing"
                 await client.chat_postMessage(channel=chan, text=msg)
-                logger.info('\nThis is a test message, so only sending to self ({})! \n{}.'.format(destination, msg))
+                logger.info('\nThis is a test message, so only sending to self ({})! \n{}.'.format(the_q, msg))
             
             else:
                 
