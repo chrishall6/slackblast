@@ -454,6 +454,7 @@ async def view_submission(ack, body, logger, client):
             await client.chat_postMessage(channel=chan, text=msg)
             logger.info('\nMessage posted to 1st F Channel ({})! \n{}'.format(chan_1stf, msg))
             
+            is_direct_message = body.get("channel_name") == 'directmessage'
             logger.info('\nIs DM = {}.'.format(is_direct_message))
             
             
