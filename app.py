@@ -212,22 +212,6 @@ async def command(ack, body, respond, client, logger):
     blocks = [
         {
             "type": "input",
-            "block_id": "title",
-            "element": {
-                "type": "plain_text_input",
-                "action_id": "title",
-                "placeholder": {
-                    "type": "plain_text",
-                    "text": "Snarky Title?"
-                }
-            },
-            "label": {
-                "type": "plain_text",
-                "text": "Title"
-            }
-        },
-        {
-            "type": "input",
             "block_id": "the_ao",
             "element": {
                 "type": "channels_select",
@@ -415,7 +399,6 @@ async def command(ack, body, respond, client, logger):
 async def view_submission(ack, body, logger, client):
     await ack()
     result = body["view"]["state"]["values"]
-    title = result["title"]["title"]["value"]
     date = result["date"]["datepicker-action"]["selected_date"]
     the_ao = result["the_ao"]["channels_select-action"]["selected_channel"]
     the_q = result["the_q"]["users_select-action"]["selected_user"]
