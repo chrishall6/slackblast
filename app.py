@@ -409,6 +409,7 @@ async def view_submission(ack, body, logger, client):
     destination = result["destination"]["destination-action"]["selected_option"]["value"]
     email_to = safeget(result, "email", "email-action", "value")
     the_date = result["date"]["datepicker-action"]["selected_date"]
+    chan_1stf = config('FIRST_F_CHANNEL_ID', default='')
 
     pax_formatted = await get_pax(pax)
 
@@ -445,9 +446,11 @@ async def view_submission(ack, body, logger, client):
                              fngs_msg, count_msg, moleskine_msg)
             msg = title_msg + "\n" + body
             
-            
+            # Post to AO Channel, the_ao, sourced from user's selection in the form
             await client.chat_postMessage(channel=chan, text=msg)
             logger.info('\nMessage posted to AO Channel! \n{}'.format(msg))
+            
+            # Post to 1st F Channel, from variable chan_1stf, sourced from the FIRST_F_CHANNEL_ID env config variable
             await client.chat_postMessage(channel=chan, text=msg)
             logger.info('\nMessage posted to 1st F Channel! \n{}'.format(msg))
             
