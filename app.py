@@ -454,6 +454,8 @@ async def view_submission(ack, body, logger, client):
             await client.chat_postMessage(channel=chan, text=msg)
             logger.info('\nMessage posted to 1st F Channel ({})! \n{}'.format(chan_1stf, msg))
             
+            logger.info('\nIs DM = {}.'.format(is_direct_message))
+            
             
     except Exception as slack_bolt_err:
         logger.error('Error with posting Slack message with chat_postMessage: {}'.format(
