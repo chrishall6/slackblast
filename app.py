@@ -445,7 +445,10 @@ async def view_submission(ack, body, logger, client):
             body = make_body(date_msg, ao_msg, q_msg, pax_msg,
                              fngs_msg, count_msg, moleskine_msg)
             msg = title_msg + "\n" + body
-                    
+            
+            logger.info('\nBody = {}\n'.format(body))
+            logger.info('\nResult = {}\n'.format(result))
+            
             if moleskine_msg == 'testing':
 
                 # Post to self, since the user entered message "testing"
